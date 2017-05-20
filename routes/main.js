@@ -78,23 +78,11 @@ router.post("/signup", function (request, response, next) {
     });
 }, function (request, response, next) {
     passport.authenticate("spartans", function (error, user, info) {
-        var result = {};
-        if (error) {
-            result.status  = "fail";
-            result.message = err;
-            return response.json(result);
-        }
-        if (!user) {
-            result.status  = "fail";
-            result.message = "User does not exits";
-            return response.json(result);
-        }
-        request.logIn(user, function (err) {
-            if (err) {
-                return next(err);
-            }
-            result.status = "success";
-            return response.json(result);
+        if (error) { return next(error); }
+        if (!user) { return response.redirect('/login'); }
+        request.logIn(user, function(err) {
+            if (err) { return next(err); }
+            return response.redirect('/users/' + user.username);
         });
     })(request, response, next);
 });
