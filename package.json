@@ -22,6 +22,8 @@
     "bcrypt-nodejs": "latest",
     "redis": "latest",
     "async": "latest",
-    "shortid": "latest"
+    "shortid": "latest",
+    "ejs": "latest",
+    "connect-flash": "latest"
   }
 }

@@ -6,24 +6,22 @@ var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
 var mongoose        = require("mongoose");
 var config          = require("./config/config");
-var passportSetup   = require("./passport/setup");
+var passport        = require("passport");
+var session         = require("express-session");
+var flash           = require("connect-flash");
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+var passportSetup   = require("./passport/setup");
+var routes          = require("./routes/main");
 
 var app = express();
 
-// mongo db setup
 mongoose.connect(config.mongo.url);
 
-// setup passport
 passportSetup();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -31,8 +29,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+app.use(session({
+    secret : "Serkan123",
+    resave : true,
+    saveUninitialized : true
+}));
+
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
