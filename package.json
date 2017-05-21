@@ -24,6 +24,7 @@
     "async": "latest",
     "shortid": "latest",
     "ejs": "latest",
-    "connect-flash": "latest"
+    "connect-flash": "latest",
+    "connect-mongo": "latest"
   }
 }

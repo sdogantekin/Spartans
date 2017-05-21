@@ -11,6 +11,8 @@ if (config.env == "DEV") {
 
     config.mongoose       = {};
     config.mongoose.debug = true;
+
+    config.sessionSecret = "Serkan123";
 }
 
 module.exports = config;

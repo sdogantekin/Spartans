@@ -1,7 +1,26 @@
 <% include header %>
-
+<body>
 <h3><%= user.username %></h3><br>
 </p>
-<a class="link" href="/logout">Logout</a><br>
-
+<input type="text" name="chatText" id="chatText" placeholder="..." autofocus="" /><br>
+<button id="chatButton" name="chatButton" value="Chat" onclick="sendMessage();">Chat</button>
+</p>
+<a class="link" href="/logout" onclick="disconnect();">Logout</a><br>
+</p>
+</body>
+<script>
+    var socket = io();
+    socket.on('connect', function() {
+        alert('connected to server!');
+    });
+    socket.on('chatMessage', function(message) {
+        alert(message.text);
+    });
+    function sendMessage() {
+        socket.emit('chatMessage',{text:document.getElementById("chatText").value})
+    }
+    function disconnect() {
+        socket.disconnect();
+    }
+</script>
 <% include footer %>

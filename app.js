@@ -9,6 +9,7 @@ var config          = require("./config/config");
 var passport        = require("passport");
 var session         = require("express-session");
 var flash           = require("connect-flash");
+var mongoStore      = require("connect-mongo")(session);
 
 var passportSetup   = require("./passport/setup");
 var routes          = require("./routes/main");
@@ -16,6 +17,10 @@ var routes          = require("./routes/main");
 var app = express();
 
 mongoose.connect(config.mongo.url);
+
+var sessionStore = new mongoStore({
+    mongooseConnection: mongoose.connection
+});
 
 passportSetup();
 
@@ -30,9 +35,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    secret : "Serkan123",
+    secret : config.sessionSecret,
     resave : true,
-    saveUninitialized : true
+    saveUninitialized : true,
+    store: sessionStore
 }));
 
 app.use(flash());
