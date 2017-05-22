@@ -4,7 +4,7 @@ config.env = "DEV";
 
 if (config.env == "DEV") {
     config.mongo     = {};
-    config.mongo.url = "mongodb://spartans:serkan123@ds151279.mlab.com:51279/spartans";
+    config.mongo.url = "mongodb://spartans:gulsahs123@ds149481.mlab.com:49481/spartans";
 
     config.log       = {};
     config.log.level = "debug";

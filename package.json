@@ -20,8 +20,13 @@
     "mongoose": "latest",
     "express-session": "latest",
     "bcrypt-nodejs": "latest",
+    "bcryptjs": "latest",
     "redis": "latest",
     "async": "latest",
-    "shortid": "latest"
+    "shortid": "latest",
+    "connect-flash": "latest",
+    "express-handlebars": "latest",
+    "express-validator": "latest",
+    "express-messages": "latest"
   }
 }
