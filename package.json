@@ -19,6 +19,7 @@
     "socket.io": "latest",
     "mongoose": "latest",
     "express-session": "latest",
+    "express-validator": "latest",
     "bcrypt-nodejs": "latest",
     "redis": "latest",
     "async": "latest",

@@ -1,15 +1,16 @@
-var express         = require('express');
-var path            = require('path');
-var favicon         = require('serve-favicon');
-var logger          = require('morgan');
-var cookieParser    = require('cookie-parser');
-var bodyParser      = require('body-parser');
-var mongoose        = require("mongoose");
-var config          = require("./config/config");
-var passport        = require("passport");
-var session         = require("express-session");
-var flash           = require("connect-flash");
-var mongoStore      = require("connect-mongo")(session);
+var express          = require('express');
+var path             = require('path');
+var favicon          = require('serve-favicon');
+var logger           = require('morgan');
+var cookieParser     = require('cookie-parser');
+var bodyParser       = require('body-parser');
+var mongoose         = require("mongoose");
+var config           = require("./config/config");
+var passport         = require("passport");
+var session          = require("express-session");
+var expressValidator = require('express-validator');
+var flash            = require("connect-flash");
+var mongoStore       = require("connect-mongo")(session);
 
 var passportSetup   = require("./passport/setup");
 var routes          = require("./routes/main");
@@ -41,12 +42,32 @@ app.use(session({
     store: sessionStore
 }));
 
+
+
 app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(routes);
+
+// Express Validator
+app.use(expressValidator({
+    errorFormatter: function(param, msg, value) {
+        var namespace = param.split('.')
+            , root    = namespace.shift()
+            , formParam = root;
+
+        while(namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param : formParam,
+            msg   : msg,
+            value : value
+        };
+    }
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
