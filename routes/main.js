@@ -69,11 +69,8 @@ router.post("/signup", function (request, response, next) {
             result.message = "User already exits";
             return response.json(result);
         }
-        var newUser = new User({username: username, password: password});
-        if(request.body.age) {
-            newUser.age = request.body.age;
-        }
 
+        var newUser = new User({username: username, password: password});
         newUser.save(next);
     });
 }, function (request, response, next) {

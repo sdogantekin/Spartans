@@ -25,6 +25,7 @@
     "shortid": "latest",
     "ejs": "latest",
     "connect-flash": "latest",
-    "connect-mongo": "latest"
+    "connect-mongo": "latest",
+    "hashmap": "latest"
   }
 }

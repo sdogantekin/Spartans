@@ -4,12 +4,15 @@ var config          = require("../config/config");
 var passport        = require("passport");
 var session         = require("express-session");
 var mongoStore      = require("connect-mongo")(session);
+var HashMap         = require('hashmap');
 
 mongoose.connect(config.mongo.url);
 
 var sessionStore = new mongoStore({
     mongooseConnection: mongoose.connection
 });
+
+var socketStore = new HashMap();
 
 exports = module.exports = function(io) {
     // Configure socket.io session
@@ -37,6 +40,7 @@ exports = module.exports = function(io) {
         console.log('a user connected');
         if(socket.request.user) {
             console.log('connected user is : '+socket.request.user.username);
+            socketStore.set(socket.request.user.username,socket);
         }
 
         // inform everyone that there is a new sheriff in the town :)
@@ -55,7 +59,13 @@ exports = module.exports = function(io) {
             message.created  = Date.now();
             message.username = socket.request.user.username;
 
-            io.emit('chatMessage', message);
+            var parts = message.text.split(" ");
+            if(parts.length >= 1 && socketStore.get(parts[0]) != null) {
+                message.text = parts.slice(1).join(" ");
+                socketStore.get(parts[0]).emit('chatMessage', message);
+            } else {
+                io.emit('chatMessage', message);
+            }
         });
 
         // inform everyone that a sheriff is leaving the town :(
@@ -63,10 +73,11 @@ exports = module.exports = function(io) {
             console.log('user disconnected : '+socket.request.user.username);
             io.emit('chatMessage', {
                 type: 'status',
-                text: 'disconnected',
+                text: 'disconnected : '+socket.request.user.username,
                 created: Date.now(),
                 username: socket.request.user.username
             });
+            socketStore.remove(socket.request.user.username);
         });
 
         /**
