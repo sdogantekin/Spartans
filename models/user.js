@@ -6,8 +6,11 @@ const SALT_FACTOR = 10;
 var userSchema = mongoose.Schema({
     username: {type:String, required: true, unique:true},
     password: {type:String, required: true},
+    fileId:{type:String},
     email: {type:String, required:true, default:"deneme@deneme.com"},
-    createdAt: {type:Date, default:Date.now()}
+    createdAt: {type:Date, default:Date.now(),
+
+    }
 });
 
 userSchema.methods.validatePassword = function(entry,callback) {

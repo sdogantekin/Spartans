@@ -11,9 +11,14 @@ var session          = require("express-session");
 var expressValidator = require('express-validator');
 var flash            = require("connect-flash");
 var mongoStore       = require("connect-mongo")(session);
+var multer           = require('multer');
+var upload           = require('./routes/upload');
+var passportSetup    = require("./passport/setup");
+var routes           = require("./routes/main");
 
-var passportSetup   = require("./passport/setup");
-var routes          = require("./routes/main");
+uploader = multer({
+    dest: 'uploads/'
+});
 
 var app = express();
 
@@ -68,6 +73,8 @@ app.use(expressValidator({
         };
     }
 }));
+
+app.post('/upload', uploader.single('singleFile'), upload.s3); //"singleFile" is the field name
 
 app.use(function (req, res, next) {
     res.locals.success_msg = req.flash('success_msg');

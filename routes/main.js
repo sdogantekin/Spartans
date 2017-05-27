@@ -4,8 +4,8 @@ var winston    = require("winston");
 var passport   = require("passport");
 var User       = require("../models/user");
 var common     = require("./common");
-
-var router = express.Router();
+var uploadjs   = require("./upload")
+var router     = express.Router();
 
 router.use(function (request, response, next) {
     response.locals.currentUser = request.user;
@@ -56,6 +56,7 @@ router.get("/signup", function (request, response) {
 router.post("/signup", function (request, response, next) {
     var username = request.body.username;
     var password = request.body.password;
+    var imageId = uploadjs.variableName;
 
     User.findOne({username: username}, function (err, user) {
         var result = {};
@@ -69,7 +70,7 @@ router.post("/signup", function (request, response, next) {
             result.message = "User already exits";
             return response.json(result);
         }
-        var newUser = new User({username: username, password: password});
+        var newUser = new User({username: username, password: password, fileId: imageId});
         if(request.body.age) {
             newUser.age = request.body.age;
         }
