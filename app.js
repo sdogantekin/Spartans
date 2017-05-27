@@ -1,21 +1,21 @@
-var express         = require('express');
-var path            = require('path');
-var favicon         = require('serve-favicon');
-var logger          = require('morgan');
-var cookieParser    = require('cookie-parser');
-var bodyParser      = require('body-parser');
-var mongoose        = require("mongoose");
-var config          = require("./config/config");
-var passport        = require("passport");
-var session         = require("express-session");
+var express          = require('express');
+var path             = require('path');
+var favicon          = require('serve-favicon');
+var logger           = require('morgan');
+var cookieParser     = require('cookie-parser');
+var bodyParser       = require('body-parser');
+var mongoose         = require("mongoose");
+var config           = require("./config/config");
+var passport         = require("passport");
+var session          = require("express-session");
 var expressValidator = require('express-validator');
-var flash           = require("connect-flash");
-var mongoStore      = require("connect-mongo")(session);
-var multer          = require('multer');
-var upload          = require('./routes/upload');
+var flash            = require("connect-flash");
+var mongoStore       = require("connect-mongo")(session);
+var multer           = require('multer');
+var upload           = require('./routes/upload');
 
-var passportSetup   = require("./passport/setup");
-var routes          = require("./routes/main");
+var passportSetup    = require("./passport/setup");
+var routes           = require("./routes/main");
 
 uploader = multer({
     dest: 'uploads/'
