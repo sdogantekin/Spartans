@@ -1,0 +1,22 @@
+{
+  "name": "spartans",
+  "description": "",
+  "main": "",
+  "authors": [
+    "serkand <serkan.dogantekin@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sdogantekin/Spartans",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "bootstrap-sass": "^3.3.7"
+  }
+}

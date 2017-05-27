@@ -11,7 +11,7 @@ router.get("/:username",function(request,response,next){
         if(!user) {
             return next(404);
         }
-        response.render("profile",{user:user});
+        response.render("dashboard",{user:user});
     });
 });
 

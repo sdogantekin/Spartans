@@ -1,15 +1,25 @@
 <% include header %>
 <body>
-
-<div class = "container">
-    <div class="wrapper">
-        <form action="/signup" method="post" role="form" id="signupForm">
-            <h3>Please Signup</h3><br>
-            <input type="text" name="username" id="username" placeholder="Username" required="true" autofocus="" oninvalid="this.setCustomValidity('you must fill username')"/><br>
-            <input type="password" name="password" id="password" placeholder="Password" required="true"/><br>
-            <button id="signupButton" name="Submit" value="Signup" type="Submit">Signup</button>
-        </form>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <form class="form-signin" action="/signup" method="post" role="form" id="signupForm">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus oninvalid="this.setCustomValidity('you must fill username')">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          </form>
+        </div>
+      </div>
     </div>
-</div>
-</body>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+  </body>
 <% include footer %>

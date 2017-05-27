@@ -13,6 +13,11 @@ if (config.env == "DEV") {
     config.mongoose.debug = true;
 
     config.sessionSecret = "Serkan123";
+
+    config.aws                  = {};
+    config.aws.accessKeyId      = "XXXXX";
+    config.aws.secretAccessKey  = "YYYYY";
+    config.aws.region           = "eu-west-2";
 }
 
 module.exports = config;

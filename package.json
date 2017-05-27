@@ -29,6 +29,8 @@
     "connect-mongo": "latest",
     "aws-sdk" : "latest",
     "flow": "latest",
-    "hashmap": "latest"
+    "hashmap": "latest",
+    "multer": "latest",
+    "bower": "latest"
   }
 }

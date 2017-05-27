@@ -1,9 +1,10 @@
-var express    = require("express");
-var userRouter = require("./users");
-var winston    = require("winston");
-var passport   = require("passport");
-var User       = require("../models/user");
-var common     = require("./common");
+var express         = require("express");
+var userRouter      = require("./users");
+var winston         = require("winston");
+var passport        = require("passport");
+var User            = require("../models/user");
+var common          = require("./common");
+var uploadRouter    = require('./upload');
 
 var router = express.Router();
 
@@ -15,6 +16,7 @@ router.use(function (request, response, next) {
 });
 
 router.use("/users", common.ensureAuthenticated, userRouter);
+router.use("/upload", common.ensureAuthenticated, uploadRouter);
 
 router.get("/", function (request, response, next) {
     User.find()
