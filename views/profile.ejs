@@ -7,6 +7,22 @@
 </p>
 <a class="link" href="/logout" onclick="disconnect();">Logout</a><br>
 </p>
+
+<head>
+    <title>File Upload</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<form method="post" action="/upload" name="myForm" class="myForm" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Upload single file</legend>
+        <input type="file" id="file" name="singleFile">
+        <input type="text" id="username" name="username" hidden value="<%= user.username %>">
+    </fieldset>
+    <button id = "btn1" type="submit">Upload</button>
+    <button type="button">Cancel</button>
+
+
 </body>
 <script>
     var socket = io();

@@ -19,6 +19,7 @@
     "socket.io": "latest",
     "mongoose": "latest",
     "express-session": "latest",
+    "express-validator": "latest",
     "bcrypt-nodejs": "latest",
     "redis": "latest",
     "async": "latest",
@@ -26,6 +27,8 @@
     "ejs": "latest",
     "connect-flash": "latest",
     "connect-mongo": "latest",
+    "aws-sdk" : "latest",
+    "flow": "latest",
     "hashmap": "latest"
   }
 }
