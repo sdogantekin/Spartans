@@ -74,7 +74,7 @@
             <h1 class="page-header">Dashboard</h1>
 
             <p>
-            <h3><%= user.username %></h3><br>
+            <h3 id="user"><%= user.username %></h3><br>
             </p>
             <input type="text" name="chatText" id="chatText" placeholder="..." autofocus="" /><br>
             <button id="chatButton" name="chatButton" value="Chat" onclick="sendMessage();">Chat</button>
@@ -104,25 +104,25 @@
                                     </button>
                                     <ul class="dropdown-menu slidedown">
                                         <li><a href="http://www.jquery2dotnet.com"><span
-                                                class="glyphicon glyphicon-refresh">
+                                                        class="glyphicon glyphicon-refresh">
                                     </span>Refresh</a></li>
                                         <li><a href="http://www.jquery2dotnet.com"><span
-                                                class="glyphicon glyphicon-ok-sign">
+                                                        class="glyphicon glyphicon-ok-sign">
                                     </span>Available</a></li>
                                         <li><a href="http://www.jquery2dotnet.com"><span
-                                                class="glyphicon glyphicon-remove">
+                                                        class="glyphicon glyphicon-remove">
                                     </span>Busy</a></li>
                                         <li><a href="http://www.jquery2dotnet.com"><span
-                                                class="glyphicon glyphicon-time"></span>
-                                            Away</a></li>
+                                                        class="glyphicon glyphicon-time"></span>
+                                                Away</a></li>
                                         <li class="divider"></li>
                                         <li><a href="http://www.jquery2dotnet.com"><span
-                                                class="glyphicon glyphicon-off"></span>
-                                            Sign Out</a></li>
+                                                        class="glyphicon glyphicon-off"></span>
+                                                Sign Out</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body" id="contents">
                                 <ul class="chat">
                                     <li class="left clearfix"><span class="chat-img pull-left">
                                     <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar"
@@ -149,7 +149,7 @@
                                         <div class="chat-body clearfix">
                                             <div class="header">
                                                 <small class=" text-muted"><span
-                                                        class="glyphicon glyphicon-time"></span>13 mins ago
+                                                            class="glyphicon glyphicon-time"></span>13 mins ago
                                                 </small>
                                                 <strong class="pull-right primary-font">Bhaumik Patel</strong>
                                             </div>
@@ -184,10 +184,10 @@
                                 </span>
                                         <div class="chat-body clearfix">
                                             <div class="header">
-                                                <small class=" text-muted"><span
-                                                        class="glyphicon glyphicon-time"></span>15 mins ago
-                                                </small>
                                                 <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                                <small class=" text-muted"><span
+                                                            class="glyphicon glyphicon-time"></span>15 mins ago
+                                                </small>
                                             </div>
                                             <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
@@ -200,10 +200,10 @@
                             </div>
                             <div class="panel-footer">
                                 <div class="input-group">
-                                    <input id="btn-input" type="text" class="form-control input-sm"
+                                    <input id="chat-input" type="text" class="form-control input-sm"
                                            placeholder="Type your message here..."/>
                                     <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
+                                    <button class="btn btn-warning btn-sm" id="btn-chat" >
                                         Send</button>
                                 </span>
                                 </div>
@@ -216,22 +216,87 @@
     </div>
 </div>
 
+
+</body>
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
-</body>
+<script type="application/javascript">
+
+    $(document).ready(function(e) {
+        $(window).keydown(function(e){
+            if(e.keyCode == 13)
+            {
+                $('#btn-chat').click();
+
+            }
+        });
+
+        function addMsg(msg){
+            $("#contents").append(msg);
+
+
+        }
+
+
+
+        var socket = io();
+        socket.on('connect', function() {
+            //alert('connected to server!');
+        });
+        socket.on('chatMessage', function(message) {
+            //alert(message.text);
+
+            var time = new Date().toLocaleString();
+
+            var username = $('#user').text()
+
+            var liDirection = "right";
+            var imageDirection = "pull-right";
+            var imageUrl = "http://placehold.it/50/FA6F57/fff&text=ME";
+            var strongClass = imageDirection;
+            var small = "";
+
+            if(username  != message.username){
+                liDirection = "left";
+                imageDirection = "pull-left";
+                imageUrl = "http://placehold.it/50/55C1E7/fff&text=U";
+                strongClass = "";
+                small = "pull-right"
+            }
+
+            addMsg('<ul class="chat"><li class="' + liDirection + 'clearfix">'+
+                '<span class="chat-img '+ imageDirection +'"><img src='+imageUrl+' alt="User Avatar" class="img-circle"/>'+
+                '&nbsp;&nbsp;</span>'+
+                '<div class="chat-body clearfix">'+
+                '<div class="header">'+
+                '<small class="'+small+' text-muted"><span class="glyphicon glyphicon-time"></span> '+time+' </small>'+
+                '<strong class="'+strongClass+' primary-font">'+message.username+'&nbsp;&nbsp;</strong>'+
+                '</div>'+
+                '<p>' + message.text + '</p>'+
+                '</div></ul>'
+            );
+        });
+
+        $("#btn-chat").click(function () {
+            sendMessage();
+        })
+
+        function sendMessage() {
+            socket.emit('chatMessage',{text:document.getElementById("chat-input").value})
+            $('#chat-input').val('');
+        }
+
+        function disconnect() {
+            socket.disconnect();
+        }
+
+    });
+
+
+</script>
+
+
 <script>
-    var socket = io();
-    socket.on('connect', function() {
-        alert('connected to server!');
-    });
-    socket.on('chatMessage', function(message) {
-        alert(message.text);
-    });
-    function sendMessage() {
-        socket.emit('chatMessage',{text:document.getElementById("chatText").value})
-    }
-    function disconnect() {
-        socket.disconnect();
-    }
+
 </script>
 <% include footer %>
