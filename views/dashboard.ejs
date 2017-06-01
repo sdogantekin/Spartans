@@ -1,46 +1,5 @@
 <% include header %>
-
-<!--
-
-<p>
-<h3><%= user.username %></h3><br>
-</p>
-<input type="text" name="chatText" id="chatText" placeholder="..." autofocus="" /><br>
-<button id="chatButton" name="chatButton" value="Chat" onclick="sendMessage();">Chat</button>
-</p>
-<form method="post" action="/upload" name="myForm" class="myForm" enctype="multipart/form-data">
-    <fieldset>
-        <legend>Upload single file</legend>
-        <input type="file" id="uploadFile" name="uploadFile">
-    </fieldset>
-    <button id = "btn1" type="submit">Upload</button>
-    <button type="button">Cancel</button>
-</form>
-</p>
-<a class="link" href="/logout" onclick="disconnect();">Logout</a><br>
-</p>
-</body>
-<script>
-    var socket = io();
-    socket.on('connect', function() {
-        alert('connected to server!');
-    });
-    socket.on('chatMessage', function(message) {
-        alert(message.text);
-    });
-    function sendMessage() {
-        socket.emit('chatMessage',{text:document.getElementById("chatText").value})
-    }
-    function disconnect() {
-        socket.disconnect();
-    }
-</script>
--->
-
-
-
 <body>
-
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -72,12 +31,8 @@
 
         <div class="col-sm-12 col-md-12 main">
             <h1 class="page-header">Dashboard</h1>
-
             <p>
             <h3 id="user"><%= user.username %></h3><br>
-            </p>
-            <input type="text" name="chatText" id="chatText" placeholder="..." autofocus="" /><br>
-            <button id="chatButton" name="chatButton" value="Chat" onclick="sendMessage();">Chat</button>
             </p>
             <form method="post" action="/upload" name="myForm" class="myForm" enctype="multipart/form-data">
                 <fieldset>
@@ -90,7 +45,6 @@
             </p>
             <a class="link" href="/logout" onclick="disconnect();">Logout</a><br>
             </p>
-
             <div class="container">
                 <div class="row">
                     <div class="col-md-5">
@@ -123,79 +77,7 @@
                                 </div>
                             </div>
                             <div class="panel-body" id="contents">
-                                <ul class="chat">
-                                    <li class="left clearfix"><span class="chat-img pull-left">
-                                    <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar"
-                                         class="img-circle"/>
-                                </span>
-                                        <div class="chat-body clearfix">
-                                            <div class="header">
-                                                <strong class="primary-font">Jack Sparrow</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>12 mins ago
-                                                </small>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                                                bibendum ornare
-                                                dolor, quis ullamcorper ligula sodales.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="right clearfix"><span class="chat-img pull-right">
-                                    <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar"
-                                         class="img-circle"/>
-                                </span>
-                                        <div class="chat-body clearfix">
-                                            <div class="header">
-                                                <small class=" text-muted"><span
-                                                            class="glyphicon glyphicon-time"></span>13 mins ago
-                                                </small>
-                                                <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                                                bibendum ornare
-                                                dolor, quis ullamcorper ligula sodales.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="left clearfix"><span class="chat-img pull-left">
-                                    <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar"
-                                         class="img-circle"/>
-                                </span>
-                                        <div class="chat-body clearfix">
-                                            <div class="header">
-                                                <strong class="primary-font">Jack Sparrow</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago
-                                                </small>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                                                bibendum ornare
-                                                dolor, quis ullamcorper ligula sodales.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="right clearfix"><span class="chat-img pull-right">
-                                    <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar"
-                                         class="img-circle"/>
-                                </span>
-                                        <div class="chat-body clearfix">
-                                            <div class="header">
-                                                <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                                <small class=" text-muted"><span
-                                                            class="glyphicon glyphicon-time"></span>15 mins ago
-                                                </small>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                                                bibendum ornare
-                                                dolor, quis ullamcorper ligula sodales.
-                                            </p>
-                                        </div>
-                                    </li>
+                                <ul class="chat" id="chat_scroll">
                                 </ul>
                             </div>
                             <div class="panel-footer">
@@ -221,23 +103,16 @@
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
 <script type="application/javascript">
-
     $(document).ready(function(e) {
         $(window).keydown(function(e){
-            if(e.keyCode == 13)
-            {
+            if(e.keyCode == 13) {
                 $('#btn-chat').click();
-
             }
         });
 
         function addMsg(msg){
-            $("#contents").append(msg);
-
-
+            $("#chat_scroll").append(msg);
         }
-
-
 
         var socket = io();
         socket.on('connect', function() {
@@ -264,7 +139,7 @@
                 small = "pull-right"
             }
 
-            addMsg('<ul class="chat"><li class="' + liDirection + 'clearfix">'+
+            addMsg('<li class="' + liDirection + 'clearfix">'+
                 '<span class="chat-img '+ imageDirection +'"><img src='+imageUrl+' alt="User Avatar" class="img-circle"/>'+
                 '&nbsp;&nbsp;</span>'+
                 '<div class="chat-body clearfix">'+
@@ -273,7 +148,7 @@
                 '<strong class="'+strongClass+' primary-font">'+message.username+'&nbsp;&nbsp;</strong>'+
                 '</div>'+
                 '<p>' + message.text + '</p>'+
-                '</div></ul>'
+                '</div>'
             );
         });
 
@@ -289,14 +164,6 @@
         function disconnect() {
             socket.disconnect();
         }
-
     });
-
-
-</script>
-
-
-<script>
-
 </script>
 <% include footer %>
