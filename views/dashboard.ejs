@@ -154,24 +154,6 @@
         });
 
         $("#btn-chat").click(function () {
-            var time = new Date().toLocaleString();
-            var username = $('#user').text()
-            var liDirection = "right";
-            var imageDirection = "pull-right";
-            var imageUrl = "http://placehold.it/50/FA6F57/fff&text=ME";
-            var strongClass = imageDirection;
-            var small = "";
-            addMsg('<li class="' + liDirection + 'clearfix">'+
-                    '<span class="chat-img '+ imageDirection +'"><img src='+imageUrl+' alt="User Avatar" class="img-circle"/>'+
-                    '&nbsp;&nbsp;</span>'+
-                    '<div class="chat-body clearfix">'+
-                    '<div class="header">'+
-                    '<small class="'+small+' text-muted"><span class="glyphicon glyphicon-time"></span> '+time+' </small>'+
-                    '<strong class="'+strongClass+' primary-font">'+message.username+'&nbsp;&nbsp;</strong>'+
-                    '</div>'+
-                    '<p>' + message.text + '</p>'+
-                    '</div>'
-            );
             sendMessage();
         })
 
