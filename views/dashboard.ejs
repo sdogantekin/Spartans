@@ -161,7 +161,6 @@
             var imageUrl = "http://placehold.it/50/FA6F57/fff&text=ME";
             var strongClass = imageDirection;
             var small = "";
-            sendMessage();
             addMsg('<li class="' + liDirection + 'clearfix">'+
                     '<span class="chat-img '+ imageDirection +'"><img src='+imageUrl+' alt="User Avatar" class="img-circle"/>'+
                     '&nbsp;&nbsp;</span>'+
@@ -173,6 +172,7 @@
                     '<p>' + message.text + '</p>'+
                     '</div>'
             );
+            sendMessage();
         })
 
         function sendMessage() {
