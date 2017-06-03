@@ -233,10 +233,8 @@
 
         function addMsg(msg){
             $("#contents").append(msg);
-
-
+            $("#contents").scrollTop($("#contents")[0].scrollHeight);
         }
-
 
 
         var socket = io();
