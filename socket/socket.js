@@ -63,7 +63,6 @@ exports = module.exports = function(io) {
             if(parts.length >= 1 && socketStore.get(parts[0]) != null) {
                 message.text = parts.slice(1).join(" ");
                 socketStore.get(parts[0]).emit('chatMessage', message);
-                socketStore.get(message.username).emit('chatMessage', message);
             } else {
                 io.emit('chatMessage', message);
             }
