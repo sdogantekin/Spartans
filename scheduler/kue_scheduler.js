@@ -47,7 +47,7 @@ function createTestJobs() {
         }
     });
 
-    var jobSendEmailIfDataIs5 = jobs.create('SendEmailIfDataIs5', mailJobBaseData).delay(1 * 60 * 1000).priority('high').save ( function (err) {
+    var jobSendEmailIfDataIs5 = jobs.create('SendEmailIfDataIs5', mailJobBaseData).delay(1 * 10 * 1000).priority('high').save ( function (err) {
         if(!err) {
             winston.info("create job for SendEmailIfDataIs5");
         }
@@ -90,10 +90,10 @@ function createTestJobs() {
             });
         }
         else{
-            var jobData     = extend({}, job.data);
-            jobData.counter = jobData.counter + 1;
+            var jobData = extend({}, job.data);
+            jobData.counter++;
             winston.info("Data value : " + jobData.counter);
-            jobs.create('SendEmailIfDataIs5', jobData).delay(1 * 60 * 1000).priority('high').save();
+            jobs.create('SendEmailIfDataIs5', jobData).delay(1 * 10 * 1000).priority('high').save();
         }
     });
 }

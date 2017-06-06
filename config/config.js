@@ -18,6 +18,10 @@ if (config.env == "DEV") {
     config.aws.accessKeyId      = "XXXXX";
     config.aws.secretAccessKey  = "YYYYY";
     config.aws.region           = "eu-west-2";
+
+    config.redis      = {};
+    config.redis.host = "127.0.0.1";
+    config.redis.port = 6379;
 }
 
 module.exports = config;

@@ -31,7 +31,8 @@
     "flow": "latest",
     "hashmap": "latest",
     "multer": "latest",
-    "multer-s3": "latest",
-    "bower": "latest"
+    "bower": "latest",
+    "kue": "latest",
+    "nodemailer": "latest"
   }
 }

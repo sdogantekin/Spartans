@@ -14,6 +14,7 @@ var mongoStore       = require("connect-mongo")(session);
 
 var passportSetup    = require("./passport/setup");
 var routes           = require("./routes/main");
+var scheduler        = require("./scheduler/kue_scheduler");
 
 var app = express();
 
@@ -49,6 +50,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(routes);
+
+// initialize scheduler
+// current scheduler uses kue, which requires a redis instance
+scheduler.initializeKue();
+scheduler.createTestJobs();
 
 // Express Validator
 app.use(expressValidator({
