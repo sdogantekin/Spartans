@@ -1,0 +1,20 @@
+<% include header %>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <form class="form-resume" action="/resume" method="post" role="form" id="resumeForm">
+                <label for="name" class="sr-only">Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Name" required autofocus>
+                <label for="surname" class="sr-only">Surname</label>
+                <input type="text" name="surname" id="surname" class="form-control" placeholder="Surname" required>
+                <p/>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Save Resume</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+</body>
+<% include footer %>

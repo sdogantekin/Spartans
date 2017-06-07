@@ -4,7 +4,9 @@ var winston         = require("winston");
 var passport        = require("passport");
 var User            = require("../models/user");
 var common          = require("./common");
-var uploadRouter    = require('./upload');
+var uploadRouter    = require("./upload");
+var resumeRouter    = require("./resume");
+var positionRouter  = require("./position");
 
 var router = express.Router();
 
@@ -17,6 +19,8 @@ router.use(function (request, response, next) {
 
 router.use("/users", common.ensureAuthenticated, userRouter);
 router.use("/upload", common.ensureAuthenticated, uploadRouter);
+router.use("/resume", common.ensureAuthenticated, resumeRouter);
+router.use("/position", common.ensureAuthenticated, positionRouter);
 
 router.get("/", function (request, response, next) {
     User.find()
