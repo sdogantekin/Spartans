@@ -8,7 +8,45 @@
                 <input type="text" id="name" name="name" class="form-control" placeholder="Name" required autofocus>
                 <label for="surname" class="sr-only">Surname</label>
                 <input type="text" name="surname" id="surname" class="form-control" placeholder="Surname" required>
+                <label for="contactInfo" class="sr-only">Contact Info</label>
+                <input type="text" name="contactInfo" id="contactInfo" class="form-control" placeholder="Contact Info" required>
+                <label for="birthDate" class="sr-only">birthDate</label>
+                <input type="date" name="birthDate" id="birthDate" class="form-control" placeholder="Birth Date" required>
+                <label for="experience" class="sr-only">experience</label>
+                <input type="text" name="experience" id="experience" class="form-control" placeholder="Experience" required>
+                <label for="language" class="sr-only">language</label>
+                <input type="text" name="language" id="language" class="form-control" placeholder="Language" required>
+                <label for="categories" class="sr-only">categories</label>
+                <input type="text" name="categories" id="categories" class="form-control" placeholder="Categories" required>
+                <label for="skills" class="sr-only">skills</label>
+                <input type="text" name="skills" id="skills" class="form-control" placeholder="Skills" required>
+                <label for="location" class="sr-only">Location</label>
+                <input type="text" name="location" id="location" class="form-control" placeholder="Location" required>
+                <h6>Work History</h6>
+                <label for="workName" class="sr-only">workName</label>
+                <input type="text" name="workName" id="workName" class="form-control" placeholder="Name" required>
+                <label for="workTitle" class="sr-only">workHistory</label>
+                <input type="text" name="workTitle" id="workTitle" class="form-control" placeholder="Title" required>
+                <label for="workStart" class="sr-only">workStart</label>
+                <input type="date" name="workStart" id="workStart" class="form-control" placeholder="Start Date" required>
+                <label for="workEnd" class="sr-only">workEnd</label>
+                <input type="date" name="workEnd" id="workEnd" class="form-control" placeholder="End Date" required>
+                <h6>Education History</h6>
+                <label for="educationSchool" class="sr-only">educationSchool</label>
+                <input type="text" name="educationSchool" id="educationSchool" class="form-control" placeholder="School" required>
+                <label for="educationDegree" class="sr-only">educationDegree</label>
+                <input type="text" name="educationDegree" id="educationDegree" class="form-control" placeholder="Degree" required>
+                <label for="educationStart" class="sr-only">educationStart</label>
+                <input type="date" name="educationStart" id="educationStart" class="form-control" placeholder="Start Date" required>
+                <label for="educationEnd" class="sr-only">educationEnd</label>
+                <input type="date" name="educationEnd" id="educationEnd" class="form-control" placeholder="End Date" required>
+                <h6>Salary</h6>
+                <label for="salaryMin" class="sr-only">salaryMin</label>
+                <input type="text" name="salaryMin" id="salaryMin" class="form-control" placeholder="Min" required>
+                <label for="salaryMax" class="sr-only">salaryMax</label>
+                <input type="text" name="salaryMax" id="salaryMax" class="form-control" placeholder="Max" required>
                 <p/>
+                <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Save Resume</button>
             </form>
         </div>
@@ -16,5 +54,6 @@
 </div>
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+
 </body>
 <% include footer %>
