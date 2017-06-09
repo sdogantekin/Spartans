@@ -21,11 +21,19 @@ var positionSchema = mongoose.Schema({
     location: {type: String, required: true},
     salary: {type: salaryInfoSchema, required: false},
     military: {type: String, required: false},
-    deadline: {type: deadlineSchema, required: false}
+    deadline: {type: deadlineSchema, required: false},
+    userId : {type: String},
+    createdAt: {type:Date, default:Date.now()}
 });
 
-positionSchema.statics.findPosition = function(callback) {
-    callback();
+positionSchema.statics.findPosition = function(userId, callback) {
+    var positions = []
+    this.find({userId : userId}).sort({createdAt: -1}).exec(function (err,users) {
+        users.forEach(function(user){
+            positions.push(user);
+        });
+        callback(positions);
+    })
 }
 
 positionSchema.methods.findSuitableRecruitan = function () {
