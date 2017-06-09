@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var winston  = require("winston");
 
 // this defines the document schema
 var workInfoSchema = mongoose.Schema({
@@ -34,11 +33,18 @@ var resumeSchema = mongoose.Schema({
     workHistory: {type: [workInfoSchema], required: false},
     educationHistory: {type: [educationInfoSchema], required: false},
     salary: {type: salaryInfoSchema, required: false},
-    userId : {type: String}
+    userId: {type: String},
+    createdAt: {type: Date, default: Date.now()}
 });
 
-resumeSchema.statics.findResume = function(callback) {
-    callback();
+resumeSchema.statics.findResume = function (userId,callback) {
+    var resumes = []
+    this.find({userId : userId}).sort({createdAt: -1}).exec(function (err,users) {
+        users.forEach(function(user){
+            resumes.push(user);
+        });
+        callback(resumes);
+    })
 }
 
 resumeSchema.methods.findSuitableRecruitan = function () {

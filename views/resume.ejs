@@ -45,15 +45,29 @@
                 <input type="text" name="salaryMin" id="salaryMin" class="form-control" placeholder="Min" required>
                 <label for="salaryMax" class="sr-only">salaryMax</label>
                 <input type="text" name="salaryMax" id="salaryMax" class="form-control" placeholder="Max" required>
-                <p/>
                 <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Save Resume</button>
             </form>
+            <button class="btn btn-lg btn-success btn-block" type="submit" id="btnGetResumes">Get Resume</button>
         </div>
     </div>
 </div>
+<div id="result"></div>
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+<script>
+
+    $(document).ready(function(e) {
+        $('#btnGetResumes').click(function () {
+            $.ajax({url: "/resume/getResume", success: function(result){
+                $('#result').text(JSON.stringify(result))
+
+            }});
+        })
+
+    });
+</script>
+
 
 </body>
 <% include footer %>

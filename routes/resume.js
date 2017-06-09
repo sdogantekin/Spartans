@@ -68,4 +68,10 @@ router.post("", function (request, response, next) {
     });
 })
 
+router.get("/getResume",function(request,response,next){
+    Resume.findResume(request.user._id, function (res) {
+        response.send(res);
+    });
+});
+
 module.exports = router;
