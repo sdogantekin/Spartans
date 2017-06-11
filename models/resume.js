@@ -33,8 +33,10 @@ var resumeSchema = mongoose.Schema({
     workHistory: {type: [workInfoSchema], required: false},
     educationHistory: {type: [educationInfoSchema], required: false},
     salary: {type: salaryInfoSchema, required: false},
-    userId: {type: String},
-    createdAt: {type: Date, default: Date.now()}
+    createdAt: {type: Date, default: Date.now()},
+    createdBy: {type:mongoose.Schema.ObjectId, ref: "User", required: true},
+    assigned : {type:mongoose.Schema.ObjectId, ref: "User", required:false}
+
 });
 
 resumeSchema.statics.findResume = function (userId,callback) {

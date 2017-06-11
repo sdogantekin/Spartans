@@ -5,7 +5,7 @@ var Position  = require("../models/position");
 router.get("",function(request,response,next){
     response.render("position", {positions:""});
 });
-
+var positionId;
 router.post("", function (request, response, next) {
 
     var name = request.body.name;
@@ -19,9 +19,9 @@ router.post("", function (request, response, next) {
     var military = request.body.military;
     var deadlineStart = request.body.deadlineStart;
     var deadlineEnd = request.body.deadlineEnd;
-    var userId = request.user._id;
+    var createdBy = request.user._id;
 
-    var newPosition = new Position({
+    newPosition = new Position({
         name: name,
         type: type,
         attributes: attributes,
@@ -37,11 +37,11 @@ router.post("", function (request, response, next) {
             start: deadlineStart,
             end: deadlineEnd
         },
-        userId : userId
+        createdBy : createdBy
 
     });
 
-    newPosition.save(function(err){
+    newPosition.save(function(err, position){
         if(!err){
 
         }
@@ -49,11 +49,29 @@ router.post("", function (request, response, next) {
             return response.send("Error");
         }
     });
+
+    newPosition.assignToSuitableRecrution(function (userId) {
+        Position.findOne({_id: newPosition.id}, function (err, position) {
+            if (err) {
+                console.log("Error")
+            }
+            position.assigned = userId;
+
+            position.save(function (err) {
+                if (!err) {
+                    response.send("New Position created and the user " + userId + " assigned for recrution")
+                }
+            });
+
+        });
+    });
+
 })
 
 router.get("/getPosition",function(request,response,next){
     Position.findPosition(request.user._id, function (positions) {
-        response.send(positions);
+        response.send(""+positions);
+
     });
 });
 

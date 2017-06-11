@@ -27,7 +27,7 @@ router.post("", function (request, response, next) {
     var educationEnd = request.body.educationEnd;
     var salaryMin = request.body.salaryMin;
     var salaryMax = request.body.salaryMax;
-    var userId = request.user._id;
+    var createdBy = request.user._id;
 
     var newResume = new Resume({name: name,
         surname: surname,
@@ -54,7 +54,7 @@ router.post("", function (request, response, next) {
         min: salaryMin,
             max: salaryMax
         },
-        userId : userId
+        createdBy : createdBy
 
     });
 
