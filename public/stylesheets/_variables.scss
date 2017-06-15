@@ -1,0 +1,37 @@
+$primary-font: "Roboto";
+
+// $primary-color: #2196f3;
+$primary-color: #00bcd4;
+$active-step: $primary-color;
+$input-border: #ccc;
+$input-mandatory: #f44336;
+
+$verified: #8bc34a;
+$pill-active: $primary-color;
+$pill-default: #ccc;
+
+$day-today: $primary-color;
+$day-final: red;
+$day-selected: #2196f3;
+$day-weekend: rgba(0,0,0,0.1);
+$calendar-background: rgba(0,0,0,0.1);
+$day-offMonth: #ccc;
+
+$font-xl: 20px;
+$font-lg: 18px;
+$font-md: 16px;
+$font-sm: 14px;
+$font-xs: 12px;
+.-text-sm{ font-size: $font-sm !important; }
+.-text-xs{ font-size: $font-xs !important; }
+
+$calendar-cell: 39px;
+
+.relative-left{
+  position: relative;
+  float:left;
+}
+
+.-left{ float: left !important; }
+.-right{ float: right !important; }
+.-text-right{ text-align: right; }
