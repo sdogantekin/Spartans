@@ -26,6 +26,10 @@ var companySchema = mongoose.Schema({
     contacts: {type: [contactSchema], required: true}
 });
 
+var skillSchema = mongoose.Schema({
+    name: {type: String, required: true},
+    level: {type: String, required: true}
+});
 
  var workLocationSchema = mongoose.Schema({
       address: {type: String, required: true},
@@ -35,6 +39,12 @@ var companySchema = mongoose.Schema({
       region: {type: String, required: true},
   });
 
+var languageInfoSchema = mongoose.Schema({
+     language: {type: String, required: true},
+     fluency: {type: String, required: true}
+});
+
+
 var positionSchema = mongoose.Schema({
     title: {type: String, required: true},
     type: {type: String, required: true},
@@ -43,12 +53,10 @@ var positionSchema = mongoose.Schema({
     salary: {type: salaryInfoSchema, required: true},
     jobCreator: {type: contactSchema, required: true},
     workLocation: {type: workLocationSchema, required: true},
-
-    
-    attributes: {type: [String], required: true},
     qualifications: {type: [String], required: true},
-    description: {type: String, required: true},
-    location: {type: String, required: true},
+    jobDescriptions: {type: [String], required: true},
+    skills: {type: [skillSchema], required: true},
+    languages: {type: [languageInfoSchema], required: false},
     military: {type: String, required: false},
     userId : {type: String},
     createdAt: {type:Date, default:Date.now()}
