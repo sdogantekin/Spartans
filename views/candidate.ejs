@@ -1,4 +1,5 @@
 <% include header %>
+<script src="/javascripts/candidate.js"></script>
 <body>
 
 <div class="modal -wizard">
@@ -13,11 +14,11 @@
         <p class="question">Genel Bilgiler</p>
       </div>
       <div class="row">
-        <div class="formContainer">
-          <input type="" name="" placeholder="Ad" class="w100">
-          <input type="" name="" placeholder="Soyad" class="w100">
-          <input type="" name="" placeholder="Email" class="w100">
-          <input type="" name="" placeholder="Telefon" class="w100">
+        <div class="formContainer" id="resumeBasics">
+          <input type="" name="" id="name" placeholder="Ad" class="w100">
+          <input type="" name="" id="surname" placeholder="Soyad" class="w100">
+          <input type="" name="" id="email" placeholder="Email" class="w100">
+          <input type="" name="" id="phone" placeholder="Telefon" class="w100">
           <input type="" name="" placeholder="Doğum Tarihi" class="w100">
           <input type="" name="" placeholder="CV Upload" class="w100">
 
@@ -85,13 +86,13 @@
         <p class="question">Yabancı Dil Bilgilerim</p>
       </div>
       <div class="formContainer">
-        <input type="" name="" placeholder="free area" class="w75">
-        <button class="w25 -primaryButton">Add</button>
+        <input type="" name="" placeholder="free area" class="w75" id="newLanguage">
+        <button class="w25 -primaryButton" onclick="addLanguage();">Add</button>
 
       <div class="row">
-          <ul class="bulletContainer">
-            <li>İngilizce</li>
-            <li>Seviyesi</li>
+          <ul class="bulletContainer" id="resumeLanguage">
+            <li id="language">İngilizce</li>
+            <li id="language">Almanca</li>
           </ul>
       </div>
     </div>
@@ -225,7 +226,7 @@
   <div class="container">
     <div class="actionBar">
       <div class="action -left">cancel</div>
-      <div class="action -right -primary">Create CV</div>
+      <div class="action -right -primary" onclick="saveResume();">Create CV</div>
     </div>
   </div>
 
