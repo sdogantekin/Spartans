@@ -1,0 +1,125 @@
+/// wizard modal ///
+.-wizard{
+  @extend .f100;
+  .container{
+    @extend .f100;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 50px 120px 0px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    .container{
+      @extend .f100;
+      margin-top:0px;
+      margin-bottom: 0px;
+      box-shadow: none;
+    }
+  }
+  .multistepContainer{
+    @extend .relative-left;
+    width: 50px;
+    .multistep{
+      @extend .f100;
+      .active{
+        width: 45px;
+        height: 45px;
+        line-height: 41px;
+        margin: 8px 0px 0px 8px;
+        text-align: center;
+        border-radius: 100%;
+        font-weight: 400;
+        font-size: 24px;
+        color: $primary-color;
+        background-color: white;
+        border:2px solid $primary-color;
+      }
+    }
+  }
+  .question{
+    @extend .w100;
+    @extend .relative-left;
+    font-size: $font-xl;
+    padding:10px;
+  }
+  .questionSub{
+    @extend .w100;
+    @extend .relative-left;
+    padding:10px;
+    font-size: $font-md;
+  }
+  .formContainer{
+    @extend .f100;
+    padding:10px;
+  }
+  .bulletContainer{
+    @extend .f100;
+    margin: 5px 0px;
+    li:before{
+      content: "";
+      position: absolute;
+      left: 0px;
+      top: 50%;
+      margin-top: -3px;
+      background-color: $primary-color;
+      width: 6px;
+      height: 6px;
+      border-radius: 100%;
+    }
+    li{
+      @extend .f100;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding:10px;
+    }
+  }
+  .pillContainer{
+    @extend .f100;
+    margin: 5px 0px;
+    li{ background-color: $pill-default; }
+    .active{ background-color: $pill-active; color: white; }
+  }
+  .actionBar{
+    box-shadow: 0px -20px 40px -20px rgba(0,0,0,0.2);
+    .action{
+      @extend .f50;
+      padding: 20px;
+    }
+    .-primary{ background-color: $primary-color; color: white; }
+  }
+  .recruitanSelector{
+    @extend .relative-left;
+    @extend .w100;
+    padding:10px;
+    li{
+      @extend .relative-left;
+      @extend .w33;
+      text-align: center;
+      .recruitan, .rating{
+        @extend .relative-left;
+        @extend .f100;
+        text-align: center;
+      }
+      img{ border-radius: 100%; }
+      .recruitan{
+        padding: 5px;
+      }
+      .rating{
+        padding: 5px;
+      }
+      a{ color: white; }
+    }
+    .action{
+      position: relative;
+      margin: 0 auto;
+      display: table;
+      vertical-align: middle;
+      // top: 20px;
+      padding:5px 10px;
+      border-radius: 5px;
+      &.-primary{ background-color: $primary-color; };
+    }
+  }
+}
+///
+
+

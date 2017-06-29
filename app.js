@@ -53,8 +53,8 @@ app.use(routes);
 
 // initialize scheduler
 // current scheduler uses kue, which requires a redis instance
-scheduler.initializeKue();
-scheduler.createTestJobs();
+//scheduler.initializeKue();
+//scheduler.createTestJobs();
 
 // Express Validator
 app.use(expressValidator({

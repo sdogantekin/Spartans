@@ -1,0 +1,35 @@
+body{
+  margin:0px;
+  padding:0px;
+  font-family: $primary-font, sans-serif;
+  font-size: 100%;
+  font-weight: 300;
+  line-height: 1;
+  vertical-align: baseline;
+  -webkit-overflow-scrolling: touch;
+}
+ol, ul, li, p{
+  margin:0px;
+  padding:0px;
+  list-style: none;
+}
+a{ text-decoration: none; }
+select::-ms-expand { display: none; }
+input:focus{ outline: none; }
+::-webkit-input-placeholder { color:#aaa; }
+:-moz-placeholder { color:#aaa; opacity:1;} /* Mozilla Firefox 4 to 18 */
+::-moz-placeholder { color:#aaa; opacity:1; } /* Mozilla Firefox 19+ */
+:-ms-input-placeholder { color:#aaa; }
+
+input, textarea, select, button {
+  position: relative;
+  float:left;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border:0px;
+  font-family: $primary-font, sans-serif;
+  font-weight: 300;
+}
+html, body, div, span, p, ol, ul, li, input, textarea, select, button {
+  box-sizing: border-box;
+}

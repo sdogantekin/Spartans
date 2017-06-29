@@ -90,4 +90,12 @@ router.post("/signup", function (request, response, next) {
     })(request, response, next);
 });
 
+router.get("/candidate", function (request, response) {
+    response.render("candidate");
+});
+
+router.get("/job", function (request, response) {
+    response.render("job");
+});
+
 module.exports = router;
