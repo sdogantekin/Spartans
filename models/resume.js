@@ -23,10 +23,12 @@ var salaryInfoSchema = mongoose.Schema({
 var resumeSchema = mongoose.Schema({
     name: {type: String, required: true},
     surname: {type: String, required: true},
+    email: {type: String, required: true},
+    phone: {type: String, required: true},
     contactInfo: {type: String, required: false},
     birthDate: {type: Date, required: false},
     experience: {type: Number, required: false},
-    language: {type: String, required: false},
+    language: {type: [String], required: false},
     categories: {type: [String], required: false},
     skills: {type: [String], required: false},
     location: {type: String, required: false},

@@ -1,0 +1,22 @@
+.w100{ width: 99%; margin: 0.5%; }
+.w75{
+  @include breakpoint(lg) { width: 74%; }
+  @include breakpoint(md) { width: 74%; }
+  width: 74%;
+  margin: 0.5%;
+}
+.w70{ width: 69%; margin: 0.5%; @include breakpoint(xs) { width: 99%; } }
+.w66{ width: 65.666%; margin: 0.5%; @include breakpoint(xs) { width: 99%; } }
+.w60{ width: 59%; margin: 0.5%; @include breakpoint(xs) { width: 99%; } }
+.w50{ width: 49%; margin: 0.5%; @include breakpoint(xs) { width: 99%; } }
+.w45{ width: 44%; margin: 0.5%; @include breakpoint(xs) { width: 99%; } }
+.w33{ width: 32.333%; margin: 0.5%; @include breakpoint(xs) { width: 99%; } }
+.w30{ width: 29%; margin: 0.5%; @include breakpoint(xs) { width: 99%; } }
+.w25{ width: 24%; margin: 0.5%; @include breakpoint(xs) { width: 99%; } }
+.w20{ width: 19%; margin: 0.5%; @include breakpoint(xs) { width: 49%; } }
+.w10{ width: 9%; margin: 0.5%; @include breakpoint(xs) { width: 49%; } }
+
+.f100{ width: 100%; }
+.f75{ width: 75%; }
+.f50{ width: 50%; }
+.f10{ width: 10%; }
