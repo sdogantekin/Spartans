@@ -20,7 +20,7 @@
           <input type="" name="" id="email" placeholder="Email" class="w100">
           <input type="" name="" id="phone" placeholder="Telefon" class="w100">
           <input type="" name="" placeholder="Doğum Tarihi" class="w100">
-          <input type="" name="" placeholder="CV Upload" class="w100">
+          CV Upload  <input type="file" name="" placeholder="CV Upload" class="w100">
 
         </div>
       </div>
@@ -39,8 +39,8 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <input type="" name="" placeholder="Category" class="w100">
-          <ul class="pillContainer">
+          <input type="" name="" id="inputExpert" placeholder="Category" class="w100">
+          <ul class="pillContainer" id="resumeExpert">
             <li>System Admin</li>
             <li>Data Scientist</li>
             <li class="active">Developer</li>
@@ -63,13 +63,13 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <ul class="pillContainer">
+          <ul class="pillContainer" id="resumeSkill">
             <li>JAVA</li>
             <li class="active">.NET</li>
             <li>C++</li>
             <li>Javascript</li>
           </ul>
-          <input type="" name="" placeholder="or else?" class="w100">
+          <input type="" name="" id="inputSkill" placeholder="or else?" class="w100">
         </div>
       </div>
     </div>
@@ -161,8 +161,8 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <input type="" name="" placeholder="free area" class="w100">
-          <ul class="pillContainer">
+          <input type="" name="" id="inputLocation" placeholder="free area" class="w100">
+          <ul class="pillContainer" id="resumeLocation">
             <li class="active">istanbul</li>
           </ul>
         </div>
@@ -175,8 +175,8 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <input type="" name="" placeholder="free area" class="w100">
-          <ul class="pillContainer">
+          <input type="" name="" id="inputPreferLocation" placeholder="free area" class="w100">
+          <ul class="pillContainer" id="resumePreferLocation">
             <li class="active">istanbul</li>
             <li class="active">ankara</li>
             <li class="active">londra</li>
@@ -211,9 +211,9 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <input type="" name="" placeholder="free area" class="w75">
-          <button class="w25 -primaryButton">Add</button>
-          <ul class="bulletContainer">
+          <input type="" name="" id="inputOther" placeholder="free area" class="w75">
+          <button class="w25 -primaryButton" onclick="addOther()">Add</button>
+          <ul class="bulletContainer" id="resumeOther">
             <li>Askerlik Tamamlanmış Olmalı</li>
             <li>Adli Sicil Kaydı İsteniyor</li>
           </ul>
