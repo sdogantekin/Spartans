@@ -36,6 +36,52 @@ function saveResume() {
     });
 }
 
+$(document).ready(function() {
+
+    //Add Expert
+    $(document).on('keypress', '#inputExpert', function(e) {
+
+        if ( e.keyCode == 13 ) {  // detect the enter key
+            $("#resumeExpert").append($("<li id=\"expert\" class='active'>").text($("#inputExpert").val()));
+        }
+
+    });
+
+    //Add Skill
+    $(document).on('keypress', '#inputSkill', function(e) {
+
+        if ( e.keyCode == 13 ) {  // detect the enter key
+            $("#resumeSkill").append($("<li id=\"skill\" class='active'>").text($("#inputSkill").val()));
+        }
+
+    });
+
+    //Add Location
+    $(document).on('keypress', '#inputLocation', function(e) {
+
+        if ( e.keyCode == 13 ) {  // detect the enter key
+            $("#resumeLocation").append($("<li id=\"location\" class='active'>").text($("#inputLocation").val()));
+        }
+
+    });
+
+    //Add Prefer Location
+    $(document).on('keypress', '#inputPreferLocation', function(e) {
+
+        if ( e.keyCode == 13 ) {  // detect the enter key
+            $("#resumePreferLocation").append($("<li id=\"preferLocation\" class='active'>").text($("#inputPreferLocation").val()));
+        }
+
+    });
+
+});
+
 function addLanguage() {
     $("#resumeLanguage").append($("<li id=\"language\">").text($("#newLanguage").val()));
 }
+
+function addOther(){
+    $("#resumeOther").append($("<li id=\"other\" class='active'>").text($("#inputOther").val()));
+
+}
+
