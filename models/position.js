@@ -22,8 +22,9 @@ var positionSchema = mongoose.Schema({
     salary: {type: salaryInfoSchema, required: false},
     military: {type: String, required: false},
     deadline: {type: deadlineSchema, required: false},
-    userId : {type: String},
-    createdAt: {type:Date, default:Date.now()}
+    createdBy: {type:mongoose.Schema.ObjectId, ref: "User", required: true},
+    createdAt: {type:Date, default:Date.now()},
+    assigned : {type:String, required:false}
 });
 
 positionSchema.statics.findPosition = function(userId, callback) {
@@ -36,9 +37,23 @@ positionSchema.statics.findPosition = function(userId, callback) {
     })
 }
 
-positionSchema.methods.findSuitableRecruitan = function () {
-    return;
-}
+positionSchema.methods.assignToSuitableRecrution = function assignToSuitableRecrution(callback) {
+    var userId;
+    Position.aggregate([
+        {$match: {'assigned': { "$exists" : true } } },
+        {$group: {
+            _id: '$assigned',  //$assigned is the column name in collection
+            count: {$sum: 1} } },
+        { $sort : { count : 1} }
+        ]
+    ).allowDiskUse(true).exec(function(err, data) {
+        if (err) return console.log('err', err);
+        userId = data[0]._id;
+        console.log('id :',data);
+        callback(userId)
+    });
+
+};
 
 // methods must be added to the schema before compiling it with mongoose.model()
 // the first parameter is the singular name of collection --> collection name is db is plural --> positions!
