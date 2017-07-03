@@ -3,11 +3,19 @@ var bcrypt   = require("bcrypt-nodejs");
 
 const SALT_FACTOR = 10;
 
+
+var socialProfileInfoSchema = mongoose.Schema({
+     network: {type: String, required: true},
+     username: {type: String, required: true},
+     url: {type: String, required: false}
+});
+
 var userSchema = mongoose.Schema({
     username: {type:String, required: true, unique:true},
     password: {type:String, required: true},
     fileId:{type:String, required: false},
     email: {type:String, required:true, default:"deneme@deneme.com"},
+    profiles: { type: [socialProfileInfoSchema], required: false }
     createdAt: {type:Date, default:Date.now()}
 });
 
