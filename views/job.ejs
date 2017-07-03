@@ -1,4 +1,5 @@
 <% include header %>
+<script src="/javascripts/job.js"></script>
 <body>
 
 <div class="modal -wizard">
@@ -15,12 +16,12 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <input type="" name="" placeholder="Category" class="w100">
-          <ul class="pillContainer">
-            <li>Perakande/li>
-            <li>İnşaat</li>
-            <li class="active">IT</li>
-            <li>Pazarlama</li>
+          <input type="" id="inputDepartment" name="" placeholder="Category" class="w100">
+          <ul class="pillContainer" id="jobDepartment">
+            <li id="perakende" onclick="changeStatus('perakende')">Perakande</li>
+            <li id="insaat" onclick="changeStatus('insaat')" >İnşaat</li>
+            <li id="it" onclick="changeStatus('it')" class="active">IT</li>
+            <li id="pazarlama" onclick="changeStatus('pazarlama')" >Pazarlama</li>
           </ul>
         </div>
       </div>
@@ -39,12 +40,12 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <input type="" name="" placeholder="Category" class="w100">
-          <ul class="pillContainer">
-            <li>System Admin</li>
-            <li>Data Scientist</li>
-            <li class="active">Developer</li>
-            <li>Business Analist</li>
+          <input type="" name="" id="inputCategory" placeholder="Category" class="w100">
+          <ul class="pillContainer" id="jobCategory">
+            <li id="systemAdmin" onclick="changeStatus('systemAdmin')">System Admin</li>
+            <li id="dataScientist" onclick="changeStatus('dataScientist')">Data Scientist</li>
+            <li id="developer" onclick="changeStatus('developer')" class="active">Developer</li>
+            <li id="businessAnalist" onclick="changeStatus('businessAnalist')">Business Analist</li>
           </ul>
         </div>
       </div>
@@ -63,13 +64,13 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <ul class="pillContainer">
-            <li>JAVA</li>
-            <li class="active">.NET</li>
-            <li>C++</li>
-            <li>Javascript</li>
+          <ul class="pillContainer" id="jobSkills">
+            <li id="java" onclick="changeStatus('java')">JAVA</li>
+            <li id="net" onclick="changeStatus('net')" class="active">.NET</li>
+            <li id="cpp" onclick="changeStatus('cpp')">C++</li>
+            <li id="javascript" onclick="changeStatus('javascript')">Javascript</li>
           </ul>
-          <input type="" name="" placeholder="or else?" class="w100">
+          <input type="" name="" id="inputSkills" placeholder="or else?" class="w100">
         </div>
       </div>
     </div>
@@ -87,13 +88,13 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <input type="" name="" placeholder="free area" class="w75">
-          <button class="w25 -primaryButton">Add</button>
-          <ul class="bulletContainer">
-            <li>İyi derecede ingilizce bilen</li>
-            <li>Dinamik, sonuç odaklı ve takipçi</li>
-            <li>Takım çalışmasına yatkın</li>
-            <li>Yoğun ve esnek iş temposunda uyum gösterebilecek</li>
+          <input type="" name="" id="inputPerfection" placeholder="free area" class="w75">
+          <button class="w25 -primaryButton" onclick="addPerfection()">Add</button>
+          <ul class="bulletContainer" id="jobPerfection">
+            <li id="perfection">İyi derecede ingilizce bilen</li>
+            <li id="perfection">Dinamik, sonuç odaklı ve takipçi</li>
+            <li id="perfection">Takım çalışmasına yatkın</li>
+            <li id="perfection">Yoğun ve esnek iş temposunda uyum gösterebilecek</li>
           </ul>
         </div>
       </div>
@@ -112,13 +113,13 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <input type="" name="" placeholder="free area" class="w75">
-          <button class="w25 -primaryButton">Add</button>
-          <ul class="bulletContainer">
-            <li>Yazılım proje yönetimi konusunda en az 3 yıl deneyimi olan</li>
-            <li>Proje yönetimi standart ve metodolojilerine hakim</li>
-            <li>Agile proje ekiplerinde yer almış</li>
-            <li>lletişim, analiz, raporlama ve sunum becerileri güçlü</li>
+          <input type="" name="" id="inputQualification" placeholder="free area" class="w75">
+          <button class="w25 -primaryButton" onclick="addQualification()">Add</button>
+          <ul class="bulletContainer" id="jobQualification">
+            <li id="qualification">Yazılım proje yönetimi konusunda en az 3 yıl deneyimi olan</li>
+            <li id="qualification">Proje yönetimi standart ve metodolojilerine hakim</li>
+            <li id="qualification">Agile proje ekiplerinde yer almış</li>
+            <li id="qualification">lletişim, analiz, raporlama ve sunum becerileri güçlü</li>
           </ul>
         </div>
       </div>
@@ -137,11 +138,11 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <input type="" name="" placeholder="free area" class="w100">
-          <ul class="pillContainer">
-            <li class="active">istanbul</li>
-            <li class="active">ankara</li>
-            <li class="active">londra</li>
+          <input type="" name="" id="inputLocation" placeholder="free area" class="w100">
+          <ul class="pillContainer" id="jobLocation">
+            <li id="istanbul" onclick="changeStatus('istanbul')" class="active">istanbul</li>
+            <li id="ankara" onclick="changeStatus('ankara')" class="active">ankara</li>
+            <li id="londra" onclick="changeStatus('londra')" class="active">londra</li>
           </ul>
         </div>
       </div>
@@ -163,9 +164,9 @@
         <p class="questionSub"> Maaş Aralığı </p>
       </div>
       <div class="row">
-        <div class="formContainer">
-          <input type="" name="" placeholder="0" class="w25">
-          <input type="" name="" placeholder="10000" class="w25">
+        <div class="formContainer" id="jobSalary">
+          <input type="" id="minSalary" name="" placeholder="0" class="w25">
+          <input type="" id="maxSalary" name="" placeholder="10000" class="w25">
         </div>
       </div>
       <div class="row">
@@ -173,9 +174,9 @@
       </div>
       <div class="row">
         <div class="formContainer">
-          <input type="" name="" placeholder="free area" class="w75">
-          <button class="w25 -primaryButton">Add</button>
-          <ul class="bulletContainer">
+          <input type="" name="" id="inputOther" placeholder="free area" class="w75">
+          <button class="w25 -primaryButton" onclick="addOther()">Add</button>
+          <ul class="bulletContainer" id="jobOther">
             <li>Askerlik Tamamlanmış Olmalı</li>
             <li>Adli Sicil Kaydı İsteniyor</li>
           </ul>
@@ -283,7 +284,7 @@
   <div class="container">
     <div class="actionBar">
       <div class="action -left">cancel</div>
-      <div class="action -right -primary">Create Position</div>
+      <div class="action -right -primary" onclick="saveJob()">Create Position</div>
     </div>
   </div>
 

@@ -5,52 +5,38 @@ var Position  = require("../models/position");
 router.get("",function(request,response,next){
     response.render("position", {positions:""});
 });
-var positionId;
+//var positionId;
 router.post("", function (request, response, next) {
 
-    var name = request.body.name;
-    var type = request.body.type;
-    var attributes = request.body.attributes;
-    var qualifications = request.body.qualifications;
-    var description = request.body.description;
-    var location = request.body.location;
-    var salaryMin = request.body.salaryMin;
-    var salaryMax = request.body.salaryMax;
-    var military = request.body.military;
-    var deadlineStart = request.body.deadlineStart;
-    var deadlineEnd = request.body.deadlineEnd;
-    var createdBy = request.user._id;
-
-    newPosition = new Position({
-        name: name,
-        type: type,
-        attributes: attributes,
-        qualifications: qualifications,
-        description: description,
-        location: location,
-        salary : {
-            min: salaryMin,
-            max: salaryMax
+    var newPosition = new Position({
+        department       : request.body.department,
+        type             : request.body.type,
+        skills           : request.body.skills,
+        perfection       : request.body.perfection,
+        qualification    : request.body.qualification,
+        location         : request.body.location,
+        salary: {
+            min          : request.body.salary.min,
+            max          : request.body.salary.max
         },
-        military : military,
-        deadline : {
-            start: deadlineStart,
-            end: deadlineEnd
-        },
-        createdBy : createdBy
-
+        other            : request.body.other,
+        createdBy        : request.user._id
     });
 
-    newPosition.save(function(err, position){
-        if(!err){
-
-        }
-        else{
-            return response.send("Error");
+    newPosition.save(function (err) {
+        if (!err) {
+            var result = {};
+            result.status = "success";
+            return response.json(result);
+        } else {
+            var result = {};
+            result.status = "fail";
+            result.message = err;
+            return response.json(result);
         }
     });
 
-    newPosition.assignToSuitableRecrution(function (userId) {
+/*    newPosition.assignToSuitableRecrution(function (userId) {
         Position.findOne({_id: newPosition.id}, function (err, position) {
             if (err) {
                 console.log("Error")
@@ -64,7 +50,7 @@ router.post("", function (request, response, next) {
             });
 
         });
-    });
+    });*/
 
 })
 
