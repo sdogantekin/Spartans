@@ -1,5 +1,6 @@
 <% include header %>
 <script src="/javascripts/candidate.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <body>
 
 <div class="modal -wizard">
@@ -19,7 +20,7 @@
           <input type="" name="" id="surname" placeholder="Soyad" class="w100">
           <input type="" name="" id="email" placeholder="Email" class="w100">
           <input type="" name="" id="phone" placeholder="Telefon" class="w100">
-          <input type="" name="" placeholder="Doğum Tarihi" class="w100">
+          <input type="" name="" id="birthDate" placeholder="Doğum Tarihi" class="w100">
           CV Upload  <input type="file" name="" placeholder="CV Upload" class="w100">
 
         </div>
@@ -41,10 +42,10 @@
         <div class="formContainer">
           <input type="" name="" id="inputExpert" placeholder="Category" class="w100">
           <ul class="pillContainer" id="resumeExpert">
-            <li>System Admin</li>
-            <li>Data Scientist</li>
-            <li class="active">Developer</li>
-            <li>Business Analist</li>
+            <li id="systemAdmin" onclick="changeStatus('systemAdmin')">System Admin</li>
+            <li id="dataScientist" onclick="changeStatus('dataScientist')">Data Scientist</li>
+            <li id="developer" onclick="changeStatus('developer')" class="active">Developer</li>
+            <li id="analyst" onclick="changeStatus('analyst')" >Business Analyst</li>
           </ul>
         </div>
       </div>
@@ -64,10 +65,10 @@
       <div class="row">
         <div class="formContainer">
           <ul class="pillContainer" id="resumeSkill">
-            <li>JAVA</li>
-            <li class="active">.NET</li>
-            <li>C++</li>
-            <li>Javascript</li>
+            <li id="java" onclick="changeStatus('java')">JAVA</li>
+            <li id="net" onclick="changeStatus('net')" class="active">.NET</li>
+            <li id="c" onclick="changeStatus('c')">C++</li>
+            <li id="javascript" onclick="changeStatus('javascript')">Javascript</li>
           </ul>
           <input type="" name="" id="inputSkill" placeholder="or else?" class="w100">
         </div>
@@ -89,13 +90,13 @@
         <input type="" name="" placeholder="free area" class="w75" id="newLanguage">
         <button class="w25 -primaryButton" onclick="addLanguage();">Add</button>
 
-      <div class="row">
+        <div class="row">
           <ul class="bulletContainer" id="resumeLanguage">
             <li id="language">İngilizce</li>
             <li id="language">Almanca</li>
           </ul>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 
@@ -114,14 +115,14 @@
         <input type="" name="" placeholder="free area" class="w75">
         <button class="w25 -primaryButton">Add</button>
 
-      <div class="row">
+        <div class="row">
           <ul class="bulletContainer">
             <li>Firma İsmi</li>
             <li>Title</li>
             <li>Başlangıç ve Bitiş Tarihi</li>
           </ul>
+        </div>
       </div>
-    </div>
     </div>
   </div>
   <div class="container">
@@ -138,14 +139,14 @@
         <input type="" name="" placeholder="free area" class="w75">
         <button class="w25 -primaryButton">Add</button>
 
-      <div class="row">
+        <div class="row">
           <ul class="bulletContainer">
             <li>Üniversite Adı</li>
             <li>Bölüm</li>
             <li>Başlangıç ve Bitiş yılı</li>
           </ul>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 
@@ -163,7 +164,7 @@
         <div class="formContainer">
           <input type="" name="" id="inputLocation" placeholder="free area" class="w100">
           <ul class="pillContainer" id="resumeLocation">
-            <li class="active">istanbul</li>
+            <li id="nistanbul" onclick="changeStatus('nistanbul')" class="active">istanbul</li>
           </ul>
         </div>
       </div>
@@ -177,9 +178,9 @@
         <div class="formContainer">
           <input type="" name="" id="inputPreferLocation" placeholder="free area" class="w100">
           <ul class="pillContainer" id="resumePreferLocation">
-            <li class="active">istanbul</li>
-            <li class="active">ankara</li>
-            <li class="active">londra</li>
+            <li id="istanbul" onclick="changeStatus('istanbul')" class="active">istanbul</li>
+            <li id="ankara" onclick="changeStatus('ankara')" class="active">ankara</li>
+            <li id="londra" onclick="changeStatus('londra')" class="active">londra</li>
           </ul>
         </div>
       </div>
@@ -201,9 +202,9 @@
         <p class="questionSub"> Maaş Aralığı </p>
       </div>
       <div class="row">
-        <div class="formContainer">
-          <input type="" name="" placeholder="0" class="w25">
-          <input type="" name="" placeholder="10000" class="w25">
+        <div class="formContainer" id="resumeSalary">
+          <input type="" id="minSalary" name="" placeholder="0" class="w25">
+          <input type="" id="maxSalary" name="" placeholder="10000" class="w25">
         </div>
       </div>
       <div class="row">
