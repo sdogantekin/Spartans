@@ -138,6 +138,26 @@ function changeStatus(id){
     }
 }
 
+function uploadFile() {
+    var file = $("#cvUpload").prop('files')[0];
+    console.log(file)
+    debugger;
+    $.ajax({
+        url: "/upload",
+        data: file,
+        type: "post",
+        contentType: "application/json",
+        processData:false,
+        success: function (response) {
+            if (response.status == "success") {
+                alert("file uploaded!");
+            } else {
+                alert("file uploading failed : "+response.message);
+            }
+        }
+    });
+}
+
 //Jquery UI Date Picker
 $( function() {
     $( "#birthDate" ).datepicker();
