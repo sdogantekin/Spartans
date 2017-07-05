@@ -13,14 +13,14 @@ var salaryInfoSchema = mongoose.Schema({
 });
 
 var positionSchema = mongoose.Schema({
-    name: {type: String, required: true},
-    type: {type: String, required: true},
-    attributes: {type: [String], required: true},
-    qualifications: {type: [String], required: true},
-    description: {type: String, required: true},
-    location: {type: String, required: true},
+    department: {type: [String], required:false},
+    type: {type: [String], required: true},
+    skills: {type: [String], required:false},
+    perfection: {type: [String], required:false},
+    qualification: {type: [String], required: true},
+    location: {type: [String], required: true},
     salary: {type: salaryInfoSchema, required: false},
-    military: {type: String, required: false},
+    other: {type:[String], required:false},
     deadline: {type: deadlineSchema, required: false},
     createdBy: {type:mongoose.Schema.ObjectId, ref: "User", required: true},
     createdAt: {type:Date, default:Date.now()},
