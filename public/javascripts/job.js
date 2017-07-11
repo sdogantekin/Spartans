@@ -14,24 +14,21 @@ function saveJob() {
     var job = {};
 
     job.department = [];
-    $('#jobDepartment li').each(function()
-    {
+    $('#jobDepartment li').each(function() {
         if($(this).hasClass('active')){
             job.department.push($(this).text())
         }
     });
 
     job.type = [];
-    $('#jobCategory li').each(function()
-    {
+    $('#jobCategory li').each(function() {
         if($(this).hasClass('active')){
             job.type.push($(this).text())
         }
     });
 
     job.skills = [];
-    $('#jobSkills li').each(function()
-    {
+    $('#jobSkills li').each(function() {
         if($(this).hasClass('active')){
             job.skills.push($(this).text())
         }
@@ -56,12 +53,9 @@ function saveJob() {
         }
     });
 
-    var salary = {}
-
-    salary.min = $("#jobSalary #minSalary").val();
-    salary.max = $("#jobSalary #maxSalary").val();
-
-    job.salary = salary;
+    job.salary     = {};
+    job.salary.min = $("#jobSalary #minSalary").val();
+    job.salary.max = $("#jobSalary #maxSalary").val();
 
     job.other = [];
     $('#jobOther li').each(function () {
@@ -89,38 +83,33 @@ $(document).ready(function() {
     $(document).on('keypress', '#inputDepartment', function(e) {
         var id = $("#inputDepartment").val()
         if ( e.keyCode == 13 ) {  // detect the enter key
-            $("#jobDepartment").append($("<li id="+id+" class='active' onclick='changeStatus(id)'>").text($("#inputDepartment").val()));
+            $("#jobDepartment").append($("<li id="+id+" class='active' onclick='changeStatus(id)'>").text(id));
         }
-
     });
 
     //Add Job Category
     $(document).on('keypress', '#inputCategory', function(e) {
         var id = $("#inputCategory").val()
         if ( e.keyCode == 13 ) {  // detect the enter key
-            $("#jobCategory").append($("<li id="+id+"   class='active' onclick='changeStatus(id)'>").text($("#inputCategory").val()));
+            $("#jobCategory").append($("<li id="+id+"   class='active' onclick='changeStatus(id)'>").text(id));
         }
-
     });
 
     //Add Skill
     $(document).on('keypress', '#inputSkills', function(e) {
         var id = "n" + $("#inputSkills").val()
         if ( e.keyCode == 13 ) {  // detect the enter key
-            $("#jobSkills").append($("<li id="+id+"  class='active' onclick='changeStatus(id)'>").text($("#inputSkills").val()));
+            $("#jobSkills").append($("<li id="+id+"  class='active' onclick='changeStatus(id)'>").text(id));
         }
-
     });
 
     //Add Location
     $(document).on('keypress', '#inputLocation', function(e) {
         var id = $("#inputLocation").val()
         if ( e.keyCode == 13 ) {  // detect the enter key
-            $("#jobLocation").append($("<li id="+id+"  class='active' onclick='changeStatus(id)'>").text($("#inputLocation").val()));
+            $("#jobLocation").append($("<li id="+id+"  class='active' onclick='changeStatus(id)'>").text(id));
         }
-
     });
-
 });
 
 function addPerfection() {
@@ -133,14 +122,12 @@ function addQualification() {
 
 function addOther(){
     $("#jobOther").append($("<li id=\"other\" class='active'>").text($("#inputOther").val()));
-
 }
 
 function changeStatus(id){
     if($("#" + id).hasClass('active')){
         $("#" + id).removeClass('active')
-    }
-    else{
+    } else{
         $("#" + id).attr('class', 'active')
     }
 }

@@ -21,7 +21,6 @@ var uploader = multer({
 });
 
 router.post("", uploader.single('uploadFile'), function(req, res, next) {
-    console.log(req);
     var s3 = new AWS.S3(),
         file = req.file,
         result = {

@@ -11,7 +11,7 @@ function onRequestCompleted(xhr,textStatus) {
 }
 
 function saveResume() {
-    var resume = {};
+    var resume       = {};
     resume.name      = $("#resumeBasics #name").val();
     resume.surname   = $("#resumeBasics #surname").val();
     resume.email     = $("#resumeBasics #email").val();
@@ -26,18 +26,19 @@ function saveResume() {
     //Work History and Education info will be added
 
     resume.categories = [];
-    $('#resumeExpert li').each(function()
-    {
+    $('#resumeExpert li').each(function() {
         if($(this).hasClass('active')){
             resume.categories.push($(this).text())
         }
     });
+
     resume.skills = [];
     $('#resumeSkill li').each(function () {
         if($(this).hasClass('active')){
             resume.skills.push($(this).text())
         }
     });
+
     $('#resumeLocation li').each(function () {
         if($(this).hasClass('active')){
             resume.location = $(this).text();
@@ -51,14 +52,9 @@ function saveResume() {
         }
     });
 
-    debugger;
-
-    var salary = {}
-
-    salary.min = $("#resumeSalary #minSalary").val();
-    salary.max = $("#resumeSalary #maxSalary").val();
-
-    resume.salary = salary;
+    resume.salary     = {}
+    resume.salary.min = $("#resumeSalary #minSalary").val();
+    resume.salary.max = $("#resumeSalary #maxSalary").val();
 
     resume.other = [];
     $('#resumeOther li').each(function () {
@@ -86,36 +82,32 @@ $(document).ready(function() {
     $(document).on('keypress', '#inputExpert', function(e) {
         var id = $("#inputExpert").val()
         if ( e.keyCode == 13 ) {  // detect the enter key
-            $("#resumeExpert").append($("<li id="+id+" class='active' onclick='changeStatus(id)'>").text($("#inputExpert").val()));
+            $("#resumeExpert").append($("<li id="+id+" class='active' onclick='changeStatus(id)'>").text(id));
         }
-
     });
 
     //Add Skill
     $(document).on('keypress', '#inputSkill', function(e) {
         var id = $("#inputSkill").val()
         if ( e.keyCode == 13 ) {  // detect the enter key
-            $("#resumeSkill").append($("<li id="+id+"   class='active' onclick='changeStatus(id)'>").text($("#inputSkill").val()));
+            $("#resumeSkill").append($("<li id="+id+"   class='active' onclick='changeStatus(id)'>").text(id));
         }
-
     });
 
     //Add Location
     $(document).on('keypress', '#inputLocation', function(e) {
         var id = "n" + $("#inputLocation").val()
         if ( e.keyCode == 13 ) {  // detect the enter key
-            $("#resumeLocation").append($("<li id="+id+"  class='active' onclick='changeStatus(id)'>").text($("#inputLocation").val()));
+            $("#resumeLocation").append($("<li id="+id+"  class='active' onclick='changeStatus(id)'>").text(id));
         }
-
     });
 
     //Add Prefer Location
     $(document).on('keypress', '#inputPreferLocation', function(e) {
         var id = $("#inputPreferLocation").val()
         if ( e.keyCode == 13 ) {  // detect the enter key
-            $("#resumePreferLocation").append($("<li id="+id+"  class='active' onclick='changeStatus(id)'>").text($("#inputPreferLocation").val()));
+            $("#resumePreferLocation").append($("<li id="+id+"  class='active' onclick='changeStatus(id)'>").text(id));
         }
-
     });
 
 });
@@ -126,37 +118,38 @@ function addLanguage() {
 
 function addOther(){
     $("#resumeOther").append($("<li id=\"other\" class='active'>").text($("#inputOther").val()));
-
 }
 
 function changeStatus(id){
     if($("#" + id).hasClass('active')){
         $("#" + id).removeClass('active')
-    }
-    else{
+    } else{
         $("#" + id).attr('class', 'active')
     }
 }
 
 function uploadFile() {
-    var file = $("#cvUpload").prop('files')[0];
-    console.log(file)
-    debugger;
-    $.ajax({
-        url: "/upload",
-        data: file,
-        type: "post",
-        contentType: "application/json",
-        processData:false,
-        success: function (response) {
-            if (response.status == "success") {
-                alert("file uploaded!");
-            } else {
-                alert("file uploading failed : "+response.message);
+    var files = $("#cvUpload").get(0).files;
+    if (files.length > 0){
+        var formData = new FormData();
+        formData.append("uploadFile", files[0]);
+
+        $.ajax({
+            url: "/upload",
+            type: "post",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.status == "success") {
+                    alert("file uploaded!");
+                } else {
+                    alert("file uploading failed : "+response.message);
+                }
             }
-        }
-    });
-}
+        });
+    }
+};
 
 //Jquery UI Date Picker
 $( function() {
