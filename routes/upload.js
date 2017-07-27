@@ -33,7 +33,7 @@ router.post("", uploader.single('uploadFile'), function(req, res, next) {
             fs.readFile(file.path, this);
         },
         function(err, data) { // Upload file to S3
-            s3.putObject({
+            s3.upload({
                 Bucket: 'spartans7', //Bucket Name
                 Key: file.originalname, //Upload File Name, Default the original name
                 Body: data
@@ -44,17 +44,17 @@ router.post("", uploader.single('uploadFile'), function(req, res, next) {
                 console.error('Error : ' + err);
                 result.error++;
             }
-            result.uploaded.push(data.ETag);
+            result.uploaded.push(data.Location);
             this();
         },
         function() {
             console.log({
                 title: "Upload Result",
                 message: result.error > 0 ? "Something is wrong, Check your server log" : "Success!!",
-                entityIDs: result.uploaded
+                fileURL: result.uploaded
             });
 
-            imageId = result.uploaded;
+            fileURL = result.uploaded;
 
             User.findOne({username: req.user.username}, function (err, user) {
                 var result = {};
@@ -64,7 +64,7 @@ router.post("", uploader.single('uploadFile'), function(req, res, next) {
                     return response.json(result);
                 }
 
-                user.fileId = imageId;
+                user.fileURL = fileURL;
 
                 user.save(function (err, user) {
                     if (err) {
@@ -72,7 +72,7 @@ router.post("", uploader.single('uploadFile'), function(req, res, next) {
                     }
                 });
 
-                res.send("File Uploaded");
+                res.send({status: "success"});
             });
         }
     );

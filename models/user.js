@@ -13,7 +13,7 @@ var socialProfileInfoSchema = mongoose.Schema({
 var userSchema = mongoose.Schema({
     username: {type:String, required: true, unique:true},
     password: {type:String, required: true},
-    fileId:{type:String, required: false},
+    fileURL:{type:String, required: false},
     email: {type:String, required:true, default:"deneme@deneme.com"},
     profiles: { type: [socialProfileInfoSchema], required: false },
     createdAt: {type:Date, default:Date.now()}
